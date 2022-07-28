@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
     public int HP;
     public float speed;
+    public SpriteRenderer sr;
+    public PlayerController playerController;
     Vector2 moveVec = new Vector2(0, 0);
     Vector3 dirVec = Vector3.left;
     Rigidbody2D rigid;
@@ -15,6 +18,7 @@ public class EnemyController : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sr = this.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -28,6 +32,8 @@ public class EnemyController : MonoBehaviour
             anim.SetBool("doRun", true);
             rigid.velocity = moveVec * speed;
         }
+
+        
     }
 
     void FixedUpdate()
@@ -41,5 +47,26 @@ public class EnemyController : MonoBehaviour
         }
         else
             scannedObject = null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.CompareTag("Player"))
+            {
+                HP -= playerController.dmg;
+                Debug.Log(HP);
+                if(HP <= 0){
+                    sr.material.color = new Color(1 ,1, 1, 0.4f);
+                    
+                    Invoke("Defeated", 2f);
+                }
+            }
+            else
+                Debug.Log(HP);
+        }
+
+    void Defeated(){
+
+        Destroy(this.gameObject);
     }
 }

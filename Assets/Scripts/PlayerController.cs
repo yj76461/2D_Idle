@@ -25,13 +25,13 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("canAttack", true);
             //Debug.Log(scannedObject); 인식하는지 아닌지 디버깅 용
             dmg = weaponManager.getWeapon("lv1gum");
-            Debug.Log(dmg + " is my damage!");
+            //Debug.Log(dmg + " is my damage!");
 
         }
         else
         {
             anim.SetBool("canAttack", false);
-            Debug.Log(dmg + " is my damage!");
+            //Debug.Log(dmg + " is my damage!");
         }
 
     }
