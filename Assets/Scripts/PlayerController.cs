@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public WeaponManager weaponManager;
+    public int dmg= 0;
     Vector3 dirVec = Vector3.right;
     float h, v;
     Rigidbody2D rigid;
@@ -22,16 +23,19 @@ public class PlayerController : MonoBehaviour
         if(scannedObject != null)
         {
             anim.SetBool("canAttack", true);
-            Debug.Log(scannedObject);
+            //Debug.Log(scannedObject); 인식하는지 아닌지 디버깅 용
+            dmg = weaponManager.getWeapon("lv1gum");
+            Debug.Log(dmg + " is my damage!");
+
         }
         else
         {
             anim.SetBool("canAttack", false);
+            Debug.Log(dmg + " is my damage!");
         }
 
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         Debug.DrawRay(rigid.position, dirVec * 1.5f, new Color(1, 0, 0));
