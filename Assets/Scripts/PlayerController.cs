@@ -48,4 +48,15 @@ public class PlayerController : MonoBehaviour
         else
             scannedObject = null;
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Enemy"))
+        {
+            col.GetComponent<EnemyController>().TakeDamage(10);
+            Debug.Log("성공");
+        }
+        else
+            Debug.Log("fail!");
+    }
 }

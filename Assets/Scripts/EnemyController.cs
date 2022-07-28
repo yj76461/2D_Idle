@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-    public int HP;
+    public int HP = 100;
     public float speed;
     public SpriteRenderer sr;
     public PlayerController playerController;
@@ -49,24 +49,19 @@ public class EnemyController : MonoBehaviour
             scannedObject = null;
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
-        {
-            if (col.CompareTag("Player"))
-            {
-                HP -= playerController.dmg;
-                Debug.Log(HP);
-                if(HP <= 0){
-                    sr.material.color = new Color(1 ,1, 1, 0.4f);
-                    
-                    Invoke("Defeated", 2f);
-                }
-            }
-            else
-                Debug.Log(HP);
-        }
 
     void Defeated(){
 
         Destroy(this.gameObject);
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        HP -= dmg;
+        Debug.Log(HP+ " is left!!");
+        if(HP <= 0){
+            sr.material.color = new Color(1 ,1, 1, 0.4f);
+            Invoke("Defeated", 1.0f);
+        }
     }
 }
