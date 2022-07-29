@@ -168,5 +168,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
-  speed: 2
+  speed: 10
   sr: {fileID: 0}

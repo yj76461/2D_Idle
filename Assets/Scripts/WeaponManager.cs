@@ -15,13 +15,13 @@ public class WeaponManager : MonoBehaviour
 
     void GenerateData(){
         weaponData.Add("lv1gum", 10);
-        weaponData.Add("lv2gum", 11);
-        weaponData.Add("lv3gum", 12);
+        weaponData.Add("lv2gum", 20);
+        weaponData.Add("lv3gum", 50);
         weaponData.Add("lv4gum", 13);
         weaponData.Add("lv5gum", 14);
         weaponData.Add("lv6gum", 15);
     }
-    
+
     public int getWeapon(string name)
     {
         return weaponData[name];

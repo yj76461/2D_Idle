@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigid;
     Animator anim;
     GameObject scannedObject;
+    bool canSpawn = true;
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -57,20 +58,23 @@ public class PlayerController : MonoBehaviour
         {
             enemyHP = col.GetComponent<EnemyController>().TakeDamage(dmg);
             Debug.Log(enemyHP);
-            if(enemyHP == 0)
+            if(enemyHP == 0 && canSpawn == true)
             {
+                canSpawn = false;
                 Debug.Log("소환합니다.");
                 gameManager.GetMoney();
                 SpawnCall();
+                StartCoroutine("SpawnDelay");
             }
         }
         else
             Debug.Log("fail!");
     }
 
-    public void killedEnemy()
+    IEnumerator SpawnDelay() // 한번에 여러번 돈이 오르고 스폰이 되는 것을 방지
     {
-        int i =0;
+        yield return new WaitForSeconds(1.0f);
+        canSpawn = true;
     }
 
     public void SpawnCall()
