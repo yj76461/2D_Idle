@@ -8,7 +8,6 @@ public class EnemyController : MonoBehaviour
     public int HP = 100;
     public float speed;
     public SpriteRenderer sr;
-    public PlayerController playerController;
     Vector2 moveVec = new Vector2(0, 0);
     Vector3 dirVec = Vector3.left;
     Rigidbody2D rigid;
@@ -51,17 +50,18 @@ public class EnemyController : MonoBehaviour
 
 
     void Defeated(){
-
         Destroy(this.gameObject);
     }
 
-    public void TakeDamage(int dmg)
+    public int TakeDamage(int dmg)
     {
-        HP -= dmg;
-        Debug.Log(HP+ " is left!!");
-        if(HP <= 0){
+        if(HP > 0)
+            HP -= dmg;
+        else{
+            //rigid.bodyType = RigidbodyType2D.Static;
             sr.material.color = new Color(1 ,1, 1, 0.4f);
-            Invoke("Defeated", 1.0f);
+            Invoke("Defeated", 0.5f);
         }
+        return HP;
     }
 }

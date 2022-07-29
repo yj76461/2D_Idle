@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public WeaponManager weaponManager;
+    public GameManager gameManager;
     public int dmg= 0;
+    public int enemyHP;
     Vector3 dirVec = Vector3.right;
     float h, v;
     Rigidbody2D rigid;
@@ -53,10 +55,26 @@ public class PlayerController : MonoBehaviour
     {
         if (col.CompareTag("Enemy"))
         {
-            col.GetComponent<EnemyController>().TakeDamage(10);
-            Debug.Log("성공");
+            enemyHP = col.GetComponent<EnemyController>().TakeDamage(dmg);
+            Debug.Log(enemyHP);
+            if(enemyHP == 0)
+            {
+                Debug.Log("소환합니다.");
+                gameManager.GetMoney();
+                SpawnCall();
+            }
         }
         else
             Debug.Log("fail!");
+    }
+
+    public void killedEnemy()
+    {
+        int i =0;
+    }
+
+    public void SpawnCall()
+    {
+        gameManager.SpawnEnemy();
     }
 }

@@ -128,7 +128,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!61 &1153788864954629252
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -170,4 +170,3 @@ MonoBehaviour:
   HP: 100
   speed: 2
   sr: {fileID: 0}
-  playerController: {fileID: 0}
