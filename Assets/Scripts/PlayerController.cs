@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     public WeaponManager weaponManager;
     public GameManager gameManager;
+    public BarController barController;
     public int dmg= 0;
+    public float Exp = 0;
     public int enemyHP;
     Vector3 dirVec = Vector3.right;
     float h, v;
@@ -62,7 +64,9 @@ public class PlayerController : MonoBehaviour
             {
                 canSpawn = false;
                 Debug.Log("소환합니다.");
+                Exp += 30.0f;
                 gameManager.GetMoney();
+                barController.touchExpBar(Exp);
                 SpawnCall();
                 StartCoroutine("SpawnDelay");
             }
