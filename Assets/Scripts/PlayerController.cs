@@ -63,10 +63,10 @@ public class PlayerController : MonoBehaviour
             if(canAttack == true){
                 enemyHP = col.GetComponent<EnemyController>().TakeDamage(dmg);
                 canAttack = false;
-                StartCoroutine("AttackDelay");
+                StartCoroutine("AttackDelay"); // 딜레이줘서 한번에 여러대 때리기 방지
             }
 
-            Debug.Log(enemyHP);
+            Debug.Log(enemyHP); // 현 어택 속도일 때, 한번의 공격에서 네번의 충돌 발생 확인.
             if(enemyHP == 0 && canSpawn == true)
             {
                 canSpawn = false;
