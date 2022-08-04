@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public GameManager gameManager;
     public BarController barController;
     public int dmg= 0;
+    public float atkSpeed = 0.2f;
     public float Exp = 0;
     public int enemyHP;
     Vector3 dirVec = Vector3.right;
@@ -15,7 +16,9 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigid;
     Animator anim;
     GameObject scannedObject;
+
     bool canSpawn = true;
+    bool canAttack = true;
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -24,10 +27,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
         if(scannedObject != null)
         {
-            anim.SetBool("canAttack", true);
+            anim.SetBool("doAttack", true);
             //Debug.Log(scannedObject); 인식하는지 아닌지 디버깅 용
             dmg = weaponManager.getWeapon("lv1gum");
             //Debug.Log(dmg + " is my damage!");
@@ -35,7 +37,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            anim.SetBool("canAttack", false);
+            anim.SetBool("doAttack", false);
             //Debug.Log(dmg + " is my damage!");
         }
 
@@ -58,7 +60,12 @@ public class PlayerController : MonoBehaviour
     {
         if (col.CompareTag("Enemy"))
         {
-            enemyHP = col.GetComponent<EnemyController>().TakeDamage(dmg);
+            if(canAttack == true){
+                enemyHP = col.GetComponent<EnemyController>().TakeDamage(dmg);
+                canAttack = false;
+                StartCoroutine("AttackDelay");
+            }
+
             Debug.Log(enemyHP);
             if(enemyHP == 0 && canSpawn == true)
             {
@@ -73,6 +80,12 @@ public class PlayerController : MonoBehaviour
         }
         else
             Debug.Log("fail!");
+    }
+
+    IEnumerator AttackDelay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        canAttack = true;
     }
 
     IEnumerator SpawnDelay() // 한번에 여러번 돈이 오르고 스폰이 되는 것을 방지

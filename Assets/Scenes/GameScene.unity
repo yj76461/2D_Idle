@@ -649,7 +649,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1019,7 +1019,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068056633}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.05, z: -0.06348003}
+  m_LocalPosition: {x: 0, y: 0, z: -0.06348003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1064,6 +1064,7 @@ MonoBehaviour:
   gameManager: {fileID: 113329687}
   barController: {fileID: 190287868}
   dmg: 0
+  atkSpeed: 0.2
   Exp: 0
   enemyHP: 0
 --- !u!50 &1068056638
@@ -1481,7 +1482,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1721,6 +1722,10 @@ PrefabInstance:
     - target: {fileID: 1153788864954629251, guid: 3d7a9cfea31b0433d8b715629a8d364a, type: 3}
       propertyPath: m_Name
       value: Enemy_body
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153788864954629251, guid: 3d7a9cfea31b0433d8b715629a8d364a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1153788864954629254, guid: 3d7a9cfea31b0433d8b715629a8d364a, type: 3}
       propertyPath: m_RootOrder
