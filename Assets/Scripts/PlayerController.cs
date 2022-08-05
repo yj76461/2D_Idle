@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SpawnDelay() // 한번에 여러번 돈이 오르고 스폰이 되는 것을 방지
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.5f);
         canSpawn = true;
     }
 

@@ -14,7 +14,6 @@ public class EnemyController : MonoBehaviour
     Animator anim;
     GameObject scannedObject;
 
-    int loopCnt = 0;
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -61,7 +60,7 @@ public class EnemyController : MonoBehaviour
     }
 
     void Defeated(){
-        Destroy(this.gameObject);
+        Destroy(this.gameObject, 0.417f);
     }
 
     public int TakeDamage(int dmg)
@@ -74,7 +73,7 @@ public class EnemyController : MonoBehaviour
             anim.SetBool("isKilled", true);
 
             //sr.material.color = new Color(0.9f,0.9f,0.9f, 0.5f);
-            Invoke("Defeated", 0.417f);
+            Defeated();
         }
         return HP;
     }
