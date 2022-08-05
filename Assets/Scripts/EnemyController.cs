@@ -13,6 +13,8 @@ public class EnemyController : MonoBehaviour
     Rigidbody2D rigid;
     Animator anim;
     GameObject scannedObject;
+
+    int loopCnt = 0;
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -23,11 +25,11 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         moveVec = new Vector2(-speed, 0);
-        if(scannedObject != null){
-            anim.SetBool("doRun", false);
+        if(scannedObject != null && rigid.bodyType != RigidbodyType2D.Static){
+            
             rigid.velocity = moveVec / speed;
         }
-        else{
+        else if(scannedObject == null && rigid.bodyType != RigidbodyType2D.Static){
             anim.SetBool("doRun", true);
             rigid.velocity = moveVec;
         }
@@ -53,7 +55,7 @@ public class EnemyController : MonoBehaviour
         if(col.CompareTag("Player"))
             anim.SetBool("isAttacked", true);
     }
-    
+
     private void OnTriggerExit2D(Collider2D other) {
         anim.SetBool("isAttacked", false);
     }
@@ -65,13 +67,21 @@ public class EnemyController : MonoBehaviour
     public int TakeDamage(int dmg)
     {
         
-        if(HP > 0)
-            HP -= dmg;
-        else{
-            //rigid.bodyType = RigidbodyType2D.Static;
-            sr.material.color = new Color(1 ,1, 1, 0.4f);
-            Invoke("Defeated", 0.2f);
+        HP -= dmg;
+        if(HP <= 0){
+            rigid.bodyType = RigidbodyType2D.Static;
+            
+            anim.SetBool("isKilled", true);
+
+            //sr.material.color = new Color(0.9f,0.9f,0.9f, 0.5f);
+            Invoke("Defeated", 0.417f);
         }
         return HP;
+    }
+
+    IEnumerator AnimationWait()
+    {
+        
+        yield return null;
     }
 }

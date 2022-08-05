@@ -14,7 +14,7 @@ public class WeaponManager : MonoBehaviour
     }
 
     void GenerateData(){
-        weaponData.Add("lv1gum", 10);
+        weaponData.Add("lv1gum", 50);
         weaponData.Add("lv2gum", 20);
         weaponData.Add("lv3gum", 50);
         weaponData.Add("lv4gum", 13);

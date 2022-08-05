@@ -67,15 +67,16 @@ public class PlayerController : MonoBehaviour
             }
 
             Debug.Log(enemyHP); // 현 어택 속도일 때, 한번의 공격에서 네번의 충돌 발생 확인.
-            if(enemyHP == 0 && canSpawn == true)
+            if(enemyHP <= 0 && canSpawn == true)
             {
                 canSpawn = false;
                 Debug.Log("소환합니다.");
                 Exp += 30.0f;
                 gameManager.GetMoney();
                 barController.touchExpBar(Exp);
-                SpawnCall();
+        
                 StartCoroutine("SpawnDelay");
+                SpawnCall();
             }
         }
         else
@@ -90,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SpawnDelay() // 한번에 여러번 돈이 오르고 스폰이 되는 것을 방지
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(2.0f);
         canSpawn = true;
     }
 
