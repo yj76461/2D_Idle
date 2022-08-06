@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-    public int HP = 100;
+    
     public float speed = 10.0f;
+    int HP;
     public SpriteRenderer sr;
     Vector2 moveVec = new Vector2(0, 0);
     Vector3 dirVec = Vector3.left;
@@ -14,8 +15,10 @@ public class EnemyController : MonoBehaviour
     Animator anim;
     GameObject scannedObject;
 
+    
     void Awake()
     {
+        HP = GetComponent<EnemyData>().enemyHP;
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = this.GetComponent<SpriteRenderer>();

@@ -167,7 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d516b0d8e6ff3435fb40df5a41087457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 1153788864954629251, guid: 3d7a9cfea31b0433d8b715629a8d364a, type: 3}
+  Enemy:
+  - {fileID: 1153788864954629251, guid: 3d7a9cfea31b0433d8b715629a8d364a, type: 3}
+  - {fileID: 3817709806765469633, guid: 3f8e488d514e94ee6b545cde2254a415, type: 3}
+  - {fileID: 5333488422437815413, guid: f495c2b94052b401eac4c44a2bb71d9a, type: 3}
   money: 0
   moneyText: {fileID: 1812329006}
   expBar: {fileID: 190287867}
@@ -1087,7 +1090,8 @@ MonoBehaviour:
   barController: {fileID: 190287868}
   dmg: 0
   atkSpeed: 0.2
-  Exp: 0
+  myExp: 0
+  enemyExp: 0
   enemyHP: 0
 --- !u!50 &1068056638
 Rigidbody2D:
@@ -1743,7 +1747,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1153788864954629251, guid: 3d7a9cfea31b0433d8b715629a8d364a, type: 3}
       propertyPath: m_Name
-      value: Enemy_body
+      value: Slim1_body
       objectReference: {fileID: 0}
     - target: {fileID: 1153788864954629254, guid: 3d7a9cfea31b0433d8b715629a8d364a, type: 3}
       propertyPath: m_RootOrder

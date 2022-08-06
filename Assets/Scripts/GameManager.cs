@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject Enemy;
+    public GameObject[] Enemy;
     public int money = 0;
     public Text moneyText;
     public Slider expBar;
@@ -22,16 +22,18 @@ public class GameManager : MonoBehaviour
     {
 
     }
-    public int GetMoney()
+    public int GetMoney(Collider2D enemy)
     {
-        money += 10;
+        money += enemy.GetComponent<EnemyData>().enemyMoney;
+        Debug.Log("현재 에너미의 몸값은 " + enemy.GetComponent<EnemyData>().enemyMoney);
         moneyText.text = money.ToString();
         return money;
     }
 
     
     public void SpawnEnemy(){
-        GameObject enemy = Instantiate(Enemy, new Vector3(3.3f, -1.07f, 0), Quaternion.identity);
+        int randSpawn = Random.Range(0, Enemy.Length);
+        GameObject enemy = Instantiate(Enemy[randSpawn], new Vector3(3.3f, -1.07f, 0), Quaternion.identity);
     }
 
     

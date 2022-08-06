@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     public BarController barController;
     public int dmg= 0;
     public float atkSpeed = 0.2f;
-    public float Exp = 0;
+    public float myExp = 0;
+    public float enemyExp = 0;
     public int enemyHP;
     Vector3 dirVec = Vector3.right;
     float h, v;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
             //Debug.Log(scannedObject); 인식하는지 아닌지 디버깅 용
             dmg = weaponManager.getWeapon("lv1gum");
             //Debug.Log(dmg + " is my damage!");
+            enemyExp = scannedObject.GetComponent<EnemyData>().enemyExp;
 
         }
         else
@@ -71,9 +73,9 @@ public class PlayerController : MonoBehaviour
             {
                 canSpawn = false;
                 Debug.Log("소환합니다.");
-                Exp += 30.0f;
-                gameManager.GetMoney();
-                barController.touchExpBar(Exp);
+                myExp += enemyExp;
+                gameManager.GetMoney(col);
+                barController.touchExpBar(myExp);
         
                 StartCoroutine("SpawnDelay");
                 SpawnCall();
