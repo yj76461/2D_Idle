@@ -21,7 +21,7 @@ public class BarController : MonoBehaviour
     
     public void touchExpBar(float exp)
     {
-        targetExp = exp / 100.0f;
+        targetExp = (exp / gameManager.toLevelUp[gameManager.CurrentLevel()]); // 총 exp량 / 현 레벨 경험치 통
         Debug.Log("target exp is " + targetExp);
         if(targetExp >= 1.0f) // lv up했을때 경험치 바 다시 원복 시켜주기
         {  

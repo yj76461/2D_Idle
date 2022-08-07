@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("소환합니다.");
                 myExp += enemyExp;
                 gameManager.GetMoney(col);
-                barController.touchExpBar(myExp);
+                gameManager.CheckLevelUp(myExp);
         
                 StartCoroutine("SpawnDelay");
                 SpawnCall();
