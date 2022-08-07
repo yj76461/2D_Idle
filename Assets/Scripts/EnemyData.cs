@@ -11,7 +11,7 @@ public class EnemyData : MonoBehaviour
     public int enemyMoney;
     
 
-    public EnemyData(string name, int HP, float exp, int money)
+    public void GenerateEnemyData(string name, int HP, float exp, int money)
     {
         enemyName = name;
         enemyHP = HP;

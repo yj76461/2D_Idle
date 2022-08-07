@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BarController : MonoBehaviour
 {
     public Slider expBar;
+    public GameManager gameManager;
     float targetExp = 0.0f;
     float timeScale = 0.0f;
     bool lerpingExp = false;
@@ -21,6 +22,7 @@ public class BarController : MonoBehaviour
     public void touchExpBar(float exp)
     {
         targetExp = exp / 100.0f;
+        Debug.Log("target exp is " + targetExp);
         if(targetExp >= 1.0f) // lv up했을때 경험치 바 다시 원복 시켜주기
         {  
             targetExp %= 1.0f;
