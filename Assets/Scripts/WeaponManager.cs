@@ -22,7 +22,7 @@ public class WeaponManager : MonoBehaviour
         weaponData.Add("lv6gum", 15);
     }
 
-    public int getWeapon(string name)
+    public int getWeaponAtk(string name)
     {
         return weaponData[name];
     }

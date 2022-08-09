@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("doAttack", true);
             //Debug.Log(scannedObject); 인식하는지 아닌지 디버깅 용
-            dmg = weaponManager.getWeapon("lv1gum");
+            dmg = weaponManager.getWeaponAtk("lv1gum");
             //Debug.Log(dmg + " is my damage!");
             enemyExp = scannedObject.GetComponent<EnemyData>().enemyExp;
 
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         else
-            Debug.Log("fail!");
+            Debug.Log("attack fail!");
     }
 
     IEnumerator AttackDelay()
