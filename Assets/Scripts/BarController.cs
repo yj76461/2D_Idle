@@ -19,9 +19,9 @@ public class BarController : MonoBehaviour
         
     }
     
-    public void touchExpBar(float exp)
+    public void touchExpBar(float exp, float nextLevelUpExp)
     {
-        targetExp = (exp / gameManager.toLevelUp[gameManager.CurrentLevel()]); // 총 exp량 / 현 레벨 경험치 통
+        targetExp = (exp / nextLevelUpExp); // 총 exp량 / 현 레벨 경험치 통
         Debug.Log("target exp is " + targetExp);
         if(targetExp >= 1.0f) // lv up했을때 경험치 바 다시 원복 시켜주기
         {  
