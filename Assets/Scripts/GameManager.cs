@@ -6,13 +6,16 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject[] Enemy;
+    //public Button storeBtn;
+    public GameObject store;
     public int money = 0;
     public Text moneyText;
     public Text lvText;
     public Slider expBar;
     public BarController barController;
-
     
+
+    bool storeIsOpen = false;
     int level = 1;
     float currentExp = 0.0f;
     public float[] toLevelUp = new float[100]; // 경험치 배열 생성, 다음 레벨업에 필요한 경험치량이 아닌 그 레벨이 되기위한 총 경험치 량이다.
@@ -23,7 +26,7 @@ public class GameManager : MonoBehaviour
         {
             toLevelUp[i] = toLevelUp[i - 1] * 2.0f;
         }
-        
+        //storeBtn.onClick.AddListener(OpenCloseStore);
     }
     void Start()
     {
@@ -34,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
 
     }
-    public int GetMoney(Collider2D enemy)
+    public int GetItems(Collider2D enemy)
     {
         money += Random.Range(enemy.GetComponent<EnemyData>().enemyMoney - 5,
                              enemy.GetComponent<EnemyData>().enemyMoney + 5); // 돈 범위 정해서 랜덤하게 주어지게
@@ -76,5 +79,20 @@ public class GameManager : MonoBehaviour
     public int CurrentLevel()
     {
         return level;
+    }
+
+    public void OpenCloseStore()
+    {
+        if(storeIsOpen == false)
+        {
+            store.SetActive(true);
+            storeIsOpen = true;
+        }
+        else
+        {
+            store.SetActive(false);
+            storeIsOpen = false;
+        }
+
     }
 }

@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
                 canSpawn = false;
                 //Debug.Log("소환합니다.");
                 myExp += enemyExp;
-                gameManager.GetMoney(col);
+                gameManager.GetItems(col);
                 gameManager.CheckLevelUp(myExp);
         
                 StartCoroutine("SpawnDelay");
