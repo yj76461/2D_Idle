@@ -8,6 +8,7 @@ public class WeaponData : MonoBehaviour
     public int attackDamage;
 
     public int price;
+    public bool canUse = false;
     public float atkSpeed = 0f;
 
     public WeaponData(string name, int damage)
