@@ -32,17 +32,14 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        for(int i = 0; i < 2; i++)
-        {
-            
-        }
+        
         SpawnEnemy(0);
         SpawnEnemy(1);
     }
 
     void Update()
     {
-
+        
     }
     public int GetItems(Collider2D enemy)
     {
@@ -59,7 +56,9 @@ public class GameManager : MonoBehaviour
         Vector3 currentDungeonPorsition = currentDungeon.transform.position;
         
         if(floor > 0){
-            GameObject enemy = Instantiate(currentDungeon.GetComponent<DungeonData>().enemy[0], new Vector3(currentDungeonPorsition.x + 3.0f, currentDungeonPorsition.y - 1.5f, 0), Quaternion.identity);
+            if(currentDungeon.GetComponent<DungeonData>().isActivated == true){
+                GameObject enemy = Instantiate(currentDungeon.GetComponent<DungeonData>().enemy[0], new Vector3(currentDungeonPorsition.x + 3.0f, currentDungeonPorsition.y - 1.5f, 0), Quaternion.identity);
+            }
         }
         else{
             GameObject enemy = Instantiate(Enemy[0], new Vector3(currentDungeonPorsition.x + 3.0f, currentDungeonPorsition.y - 1.5f, 0), Quaternion.identity);

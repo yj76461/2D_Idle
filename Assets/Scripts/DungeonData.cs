@@ -8,7 +8,7 @@ public class DungeonData : MonoBehaviour
     public int dungeonId;
     public int dungeonPrice;
     public GameObject button;
-    public bool isActivated = true;
+    public bool isActivated = false;
 
     public GameObject[] enemy;
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DungeonManager : MonoBehaviour
 {
     public GameObject[] dungeons;
+    public GameManager gameManager;
     void Start()
     {
         
@@ -17,8 +18,10 @@ public class DungeonManager : MonoBehaviour
 
     public void ActivateDungeon(int i)
     {
-        dungeons[i].SetActive(true);
+        //dungeons[i].SetActive(true);
+        
         dungeons[i].GetComponent<DungeonData>().isActivated = true;
+        gameManager.SpawnEnemy(i);
     }
 
 
