@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public Text lvText;
     public Slider expBar;
     public BarController barController;
+    public DungeonManager dungeonManager;
+
     
 
     bool storeIsOpen = false;
@@ -30,7 +32,12 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        SpawnEnemy();
+        for(int i = 0; i < 2; i++)
+        {
+            
+        }
+        SpawnEnemy(0);
+        SpawnEnemy(1);
     }
 
     void Update()
@@ -47,9 +54,18 @@ public class GameManager : MonoBehaviour
     }
 
     
-    public void SpawnEnemy(){
-        int randSpawn = Random.Range(0, Enemy.Length);
-        GameObject enemy = Instantiate(Enemy[randSpawn], new Vector3(3.3f, -1.07f, 0), Quaternion.identity);
+    public void SpawnEnemy(int floor){
+        GameObject currentDungeon = dungeonManager.dungeons[floor];
+        Vector3 currentDungeonPorsition = currentDungeon.transform.position;
+        
+        if(floor > 0){
+            GameObject enemy = Instantiate(currentDungeon.GetComponent<DungeonData>().enemy[0], new Vector3(currentDungeonPorsition.x + 3.0f, currentDungeonPorsition.y - 1.5f, 0), Quaternion.identity);
+        }
+        else{
+            GameObject enemy = Instantiate(Enemy[0], new Vector3(currentDungeonPorsition.x + 3.0f, currentDungeonPorsition.y - 1.5f, 0), Quaternion.identity);
+        }
+        //int randSpawn = Random.Range(0, Enemy.Length);
+        //GameObject enemy = Instantiate(Enemy[randSpawn], new Vector3(3.3f, -1.07f, 0), Quaternion.identity);
     }
 
     public void CheckLevelUp(float exp){ 

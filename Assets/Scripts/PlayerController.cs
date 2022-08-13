@@ -6,12 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     public WeaponManager weaponManager;
     public GameManager gameManager;
+    public DungeonManager dungeonManager;
     public BarController barController;
     public int dmg= 0;
     public float atkSpeed = 0.2f;
     public float myExp = 0;
     public float enemyExp = 0;
     public int enemyHP;
+
+    public int myFloor;
+    
     Vector3 dirVec = Vector3.right;
     float h, v;
     Rigidbody2D rigid;
@@ -99,6 +103,6 @@ public class PlayerController : MonoBehaviour
 
     public void SpawnCall()
     {
-        gameManager.SpawnEnemy();
+        gameManager.SpawnEnemy(myFloor);
     }
 }
