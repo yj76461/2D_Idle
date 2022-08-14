@@ -6,6 +6,14 @@ public class DungeonManager : MonoBehaviour
 {
     public GameObject[] dungeons;
     public GameManager gameManager;
+    
+    void Awake()
+    {
+        for(int i = 1; i < 5; i++)
+        {
+            dungeons[i].transform.position = dungeons[i-1].transform.position + new Vector3(0, 3.0f, 0); //던전 위치 배정
+        }
+    }
     void Start()
     {
         
@@ -16,13 +24,6 @@ public class DungeonManager : MonoBehaviour
         
     }
 
-    public void ActivateDungeon(int i)
-    {
-        //dungeons[i].SetActive(true);
-        
-        dungeons[i].GetComponent<DungeonData>().isActivated = true;
-        gameManager.SpawnEnemy(i);
-    }
 
 
 }
