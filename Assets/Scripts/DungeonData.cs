@@ -15,9 +15,11 @@ public class DungeonData : MonoBehaviour
 
     public GameObject[] enemy;
 
+    public SpriteRenderer transLayer;
+
     void Awake()
     {
-
+        transLayer.material.color = new Color(0f, 0f, 0f, 0.8f);
     }
 
     void Start()
@@ -36,5 +38,6 @@ public class DungeonData : MonoBehaviour
         isActivated = true;
         gameManager.SpawnEnemy(dungeonId);
         button.SetActive(false);
+        transLayer.material.color = new Color(0f, 0f, 0f, 0.0f);
     }
 }

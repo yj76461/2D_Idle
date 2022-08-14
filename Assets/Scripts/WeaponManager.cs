@@ -6,6 +6,8 @@ public class WeaponManager : MonoBehaviour
 {
     Dictionary<string, int> weaponData;
     
+    public GameObject[] weapon;
+    
     void Awake()
     {
         weaponData = new Dictionary<string, int>();
@@ -15,7 +17,7 @@ public class WeaponManager : MonoBehaviour
 
     void GenerateData(){
         weaponData.Add("lv1gum", 80);
-        weaponData.Add("lv2gum", 20);
+        weaponData.Add("lv2gum", 90);
         weaponData.Add("lv3gum", 50);
         weaponData.Add("lv4gum", 13);
         weaponData.Add("lv5gum", 14);

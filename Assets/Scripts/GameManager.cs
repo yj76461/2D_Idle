@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
     public int GetItems(Collider2D enemy)
     {
@@ -57,11 +57,11 @@ public class GameManager : MonoBehaviour
         
         if(floor > 0){
             if(currentDungeon.GetComponent<DungeonData>().isActivated == true){
-                GameObject enemy = Instantiate(currentDungeon.GetComponent<DungeonData>().enemy[0], new Vector3(currentDungeonPorsition.x + 3.0f, currentDungeonPorsition.y - 1.5f, 0), Quaternion.identity);
+                GameObject enemy = Instantiate(currentDungeon.GetComponent<DungeonData>().enemy[0], new Vector3(currentDungeonPorsition.x + 3.0f, currentDungeonPorsition.y - 2.0f, 0), Quaternion.identity);
             }
         }
         else{
-            GameObject enemy = Instantiate(Enemy[0], new Vector3(currentDungeonPorsition.x + 3.0f, currentDungeonPorsition.y - 1.5f, 0), Quaternion.identity);
+            GameObject enemy = Instantiate(Enemy[0], new Vector3(currentDungeonPorsition.x + 3.0f, currentDungeonPorsition.y - 2.0f, 0), Quaternion.identity);
         }
         //int randSpawn = Random.Range(0, Enemy.Length);
         //GameObject enemy = Instantiate(Enemy[randSpawn], new Vector3(3.3f, -1.07f, 0), Quaternion.identity);
