@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-    
+    //public GameManager gameManager; 프리팹은 불가능하다.
     public float speed = 10.0f;
     int HP;
     public SpriteRenderer sr;

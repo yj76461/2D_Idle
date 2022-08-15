@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour
                 gameManager.CheckLevelUp(myExp);
         
                 StartCoroutine("SpawnDelay");
-                SpawnCall();
+                gameManager.SpawnEnemy(col.GetComponent<EnemyData>().enemyFloor);
             }
         }
         else
@@ -101,8 +101,10 @@ public class PlayerController : MonoBehaviour
         canSpawn = true;
     }
 
-    public void SpawnCall()
+    
+
+    public void SetPlayerData(int Floor)
     {
-        gameManager.SpawnEnemy(myFloor);
+        myFloor = Floor;
     }
 }

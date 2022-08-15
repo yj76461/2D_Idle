@@ -14,13 +14,11 @@ public class GameManager : MonoBehaviour
     public Slider expBar;
     public BarController barController;
     public DungeonManager dungeonManager;
-
-    
-
     bool storeIsOpen = false;
     int level = 1;
     float currentExp = 0.0f;
     public float[] toLevelUp = new float[100]; // 경험치 배열 생성, 다음 레벨업에 필요한 경험치량이 아닌 그 레벨이 되기위한 총 경험치 량이다.
+
     void Awake()
     {
         toLevelUp[0] = 100; // 초기 경험치량 세팅
@@ -45,7 +43,6 @@ public class GameManager : MonoBehaviour
     {
         money += Random.Range(enemy.GetComponent<EnemyData>().enemyMoney - 5,
                              enemy.GetComponent<EnemyData>().enemyMoney + 5); // 돈 범위 정해서 랜덤하게 주어지게
-        //Debug.Log("현재 에너미의 몸값은 " + enemy.GetComponent<EnemyData>().enemyMoney);
         moneyText.text = money.ToString();
         return money;
     }
@@ -55,9 +52,9 @@ public class GameManager : MonoBehaviour
         GameObject currentDungeon = dungeonManager.dungeons[floor];
         Vector3 currentDungeonPorsition = currentDungeon.transform.position;
         
-        if(floor > 0){
+        if(floor >= 0){
             if(currentDungeon.GetComponent<DungeonData>().isActivated == true){
-                GameObject enemy = Instantiate(currentDungeon.GetComponent<DungeonData>().enemy[0], new Vector3(currentDungeonPorsition.x + 3.0f, currentDungeonPorsition.y - 2.0f, 0), Quaternion.identity);
+                GameObject enemy = Instantiate(currentDungeon.GetComponent<DungeonData>().dungeonEnemy , new Vector3(currentDungeonPorsition.x + 3.0f, currentDungeonPorsition.y - 2.0f, 0), Quaternion.identity);
             }
         }
         else{
@@ -65,6 +62,11 @@ public class GameManager : MonoBehaviour
         }
         //int randSpawn = Random.Range(0, Enemy.Length);
         //GameObject enemy = Instantiate(Enemy[randSpawn], new Vector3(3.3f, -1.07f, 0), Quaternion.identity);
+    }
+
+    public void RespawnEnemy(GameObject enemy)
+    {
+        
     }
 
     public void CheckLevelUp(float exp){ 

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DungeonData : MonoBehaviour
 {
     public GameManager gameManager;
+    public DungeonManager dungeonManager;
     public int dungeonId;
     public int dungeonPrice;
     public GameObject button;
@@ -13,7 +14,7 @@ public class DungeonData : MonoBehaviour
     
     public bool isActivated = false;
 
-    public GameObject[] enemy;
+    public GameObject dungeonEnemy;
 
     public SpriteRenderer transLayer;
 
@@ -24,7 +25,7 @@ public class DungeonData : MonoBehaviour
 
     void Start()
     {
-        btn.onClick.AddListener(ActivateDungeon);
+        btn.onClick.AddListener(OperateDungeon);
     }
 
     void Update()
@@ -33,11 +34,22 @@ public class DungeonData : MonoBehaviour
         btn.transform.position = Camera.main.WorldToScreenPoint(this.transform.position + new Vector3(0, -1.0f, 0));
     }
 
-    public void ActivateDungeon()
+    public void OperateDungeon()
     {
         isActivated = true;
         gameManager.SpawnEnemy(dungeonId);
         button.SetActive(false);
         transLayer.material.color = new Color(0f, 0f, 0f, 0.0f);
+
+        if(dungeonManager.dungeons.Length - 1 > dungeonId) // 배열 벗어나는 것 예외 처리
+            dungeonManager.nextActivation(dungeonId + 1); // 다음 층 set active하게
+    }
+
+    public void GenerateDungeonData(int currentFloor, int price, GameObject enemy, bool activate)
+    {
+        dungeonId = currentFloor;
+        dungeonPrice = price;
+        dungeonEnemy = enemy;
+        isActivated = activate;
     }
 }
