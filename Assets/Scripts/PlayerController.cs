@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public GameManager gameManager;
     public DungeonManager dungeonManager;
     public BarController barController;
+    
     public int dmg= 0;
     public float atkSpeed = 0.2f;
     public float myExp = 0;
@@ -64,15 +65,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+
         if (col.CompareTag("Enemy"))
         {
+            Debug.Log("enemy encounter!!");
             if(canAttack == true){
                 enemyHP = col.GetComponent<EnemyController>().TakeDamage(dmg);
                 canAttack = false;
                 StartCoroutine("AttackDelay"); // 딜레이줘서 한번에 여러대 때리기 방지
             }
 
-            //Debug.Log(enemyHP); // 현 어택 속도일 때, 한번의 공격에서 네번의 충돌 발생 확인.
+            Debug.Log(enemyHP); // 현 어택 속도일 때, 한번의 공격에서 네번의 충돌 발생 확인.
             if(enemyHP <= 0 && canSpawn == true)
             {
                 canSpawn = false;
@@ -82,6 +85,7 @@ public class PlayerController : MonoBehaviour
                 gameManager.CheckLevelUp(myExp);
         
                 StartCoroutine("SpawnDelay");
+                
                 gameManager.SpawnEnemy(col.GetComponent<EnemyData>().enemyFloor);
             }
         }
@@ -102,9 +106,4 @@ public class PlayerController : MonoBehaviour
     }
 
     
-
-    public void SetPlayerData(int Floor)
-    {
-        myFloor = Floor;
-    }
 }

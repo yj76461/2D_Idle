@@ -14,7 +14,7 @@ public class DungeonManager : MonoBehaviour
         dungeons[0].transform.position = new Vector3(0, 0, 0);
         for(int i = 0; i < dungeons.Length; i++)
         {
-            enemyList[i].GetComponent<EnemyData>().GenerateEnemyData(i, i * 100, i * 20, i * 40);
+            enemyList[i].GetComponent<EnemyData>().GenerateEnemyData(i, 1 * 100, i * 20, i * 40);
             dungeons[i].GetComponent<DungeonData>().GenerateDungeonData(i, 100, enemyList[i], false);
 
             if(i > 0)

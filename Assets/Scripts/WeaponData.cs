@@ -10,7 +10,7 @@ public class WeaponData : MonoBehaviour
     public bool canUse = false;
     public float atkSpeed = 0f;
 
-    public WeaponData(string name, int damage)
+    public void GenerateWeaponData(string name, int damage)
     {
         weaponName = name;
         attackDamage = damage;

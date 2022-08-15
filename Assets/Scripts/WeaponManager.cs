@@ -6,7 +6,7 @@ public class WeaponManager : MonoBehaviour
 {
     Dictionary<string, int> weaponData;
     
-    public GameObject[] weapon;
+    public Sprite[] swordList;
     
     void Awake()
     {
@@ -28,4 +28,13 @@ public class WeaponManager : MonoBehaviour
     {
         return weaponData[name];
     }
+
+    public Sprite RandomChangeWeapon()
+    {
+        int i = Random.Range(0,5);
+
+        return swordList[i];
+    }
+
+    
 }
