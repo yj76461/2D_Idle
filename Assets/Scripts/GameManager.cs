@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
     //public Button storeBtn;
     public GameObject store;
     public int money = 0;
+    public int weaponIdx;
     public Text moneyText;
     public Text lvText;
     public Slider expBar;
     public BarController barController;
     public DungeonManager dungeonManager;
+    public WeaponManager weaponManager;
     bool storeIsOpen = false;
     int level = 1;
     float currentExp = 0.0f;
@@ -111,5 +113,19 @@ public class GameManager : MonoBehaviour
             storeIsOpen = false;
         }
 
+    }
+
+    public void ChangeWeapon()
+    {
+        int idx = Random.Range(0,6);
+        for(int i = 0; i < dungeonManager.dungeons.Length ; i++)
+        {
+            // 각 던전 내 소속된 무기에 접근
+            GameObject currentWeapon = dungeonManager.dungeons[i].transform.GetChild(0).GetChild(0).GetChild(0).gameObject; // 자식 오브젝트 접근법
+            currentWeapon.GetComponent<SpriteRenderer>().sprite = weaponManager.swordList[idx];
+
+        }
+
+        weaponIdx = idx;
     }
 }

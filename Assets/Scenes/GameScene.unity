@@ -195,11 +195,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a352f4e379c8541e1a323249ffd975b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 1189057055}
   weaponName: sword_lv1
   attackDamage: 10
   price: 0
   canUse: 0
   atkSpeed: 0
+  weaponSprite: {fileID: 0}
 --- !u!212 &30955004
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -336,13 +338,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 113329687}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ChangeWeapon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -706,11 +708,13 @@ MonoBehaviour:
   - {fileID: 5333488422437815413, guid: f495c2b94052b401eac4c44a2bb71d9a, type: 3}
   store: {fileID: 1651278493}
   money: 0
+  weaponIdx: 0
   moneyText: {fileID: 1812329006}
   lvText: {fileID: 1501624141}
   expBar: {fileID: 190287867}
   barController: {fileID: 190287868}
   dungeonManager: {fileID: 236296426}
+  weaponManager: {fileID: 1189057055}
   toLevelUp:
   - 0
   - 0
@@ -1060,6 +1064,7 @@ MonoBehaviour:
   - {fileID: 5950172572735358795, guid: e9868bcd184e24b3ba9568f0574e369b, type: 3}
   basicDungeon: {fileID: 0}
   gameManager: {fileID: 113329687}
+  weaponManager: {fileID: 1189057055}
 --- !u!4 &236296427
 Transform:
   m_ObjectHideFlags: 0
@@ -1147,11 +1152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a352f4e379c8541e1a323249ffd975b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 1189057055}
   weaponName: sword_lv1
   attackDamage: 10
   price: 0
   canUse: 0
   atkSpeed: 0
+  weaponSprite: {fileID: 0}
 --- !u!212 &249766895
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3138,11 +3145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a352f4e379c8541e1a323249ffd975b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 1189057055}
   weaponName: sword_lv1
   attackDamage: 10
   price: 0
   canUse: 0
   atkSpeed: 0
+  weaponSprite: {fileID: 0}
 --- !u!212 &1124563481
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5449,11 +5458,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a352f4e379c8541e1a323249ffd975b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponManager: {fileID: 1189057055}
   weaponName: sword_lv1
   attackDamage: 10
   price: 0
   canUse: 0
   atkSpeed: 0
+  weaponSprite: {fileID: 0}
 --- !u!212 &1944578042
 SpriteRenderer:
   m_ObjectHideFlags: 0

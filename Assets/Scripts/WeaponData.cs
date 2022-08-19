@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class WeaponData : MonoBehaviour
 {
+    public WeaponManager weaponManager;
     public string weaponName;
     public int attackDamage;
     public int price;
     public bool canUse = false;
     public float atkSpeed = 0f;
 
-    public void GenerateWeaponData(string name, int damage)
+    public SpriteRenderer weaponSprite;
+
+    void Awake()
     {
-        weaponName = name;
-        attackDamage = damage;
+        weaponSprite = gameObject.GetComponent<SpriteRenderer>();
+        weaponSprite.sprite = weaponManager.swordList[0];
     }
+    
 }
