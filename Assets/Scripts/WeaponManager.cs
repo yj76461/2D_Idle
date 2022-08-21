@@ -5,24 +5,25 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     Dictionary<string, int> weaponData;
+    public List<Dictionary<string, object>> data = new List<Dictionary<string, object>>();
     
     public Sprite[] swordList;
     
     void Awake()
     {
+        data = CSVReader. Read("weaponInfo");
         weaponData = new Dictionary<string, int>();
-        GenerateWeaponData();
+
+
+        // for(int i = 0; i < data.Count; i++)
+        // {
+        //     Debug.Log("weapon ID: "+ data[i]["weaponId"] + " " +
+        //     "weapon name: " + data[i]["weaponName"] + " " + 
+        //     "weapon atk: " + data[i]["weaponAtk"] + " ");
+        // }
 
     }
 
-    void GenerateWeaponData(){
-        weaponData.Add("lv1gum", 80);
-        weaponData.Add("lv2gum", 90);
-        weaponData.Add("lv3gum", 110);
-        weaponData.Add("lv4gum", 120);
-        weaponData.Add("lv5gum", 130);
-        weaponData.Add("lv6gum", 150);
-    }
 
     // public void GenerateWeaponData(int weaponId, string name, int damage, int price)
     // {

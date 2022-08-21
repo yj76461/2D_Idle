@@ -12,10 +12,12 @@ public class GameManager : MonoBehaviour
     public int weaponIdx;
     public Text moneyText;
     public Text lvText;
+    public Text weaponInformation;
     public Slider expBar;
     public BarController barController;
     public DungeonManager dungeonManager;
     public WeaponManager weaponManager;
+    public GameObject currentWeapon;
     bool storeIsOpen = false;
     int level = 1;
     float currentExp = 0.0f;
@@ -121,11 +123,16 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < dungeonManager.dungeons.Length ; i++)
         {
             // 각 던전 내 소속된 무기에 접근
-            GameObject currentWeapon = dungeonManager.dungeons[i].transform.GetChild(0).GetChild(0).GetChild(0).gameObject; // 자식 오브젝트 접근법
+            currentWeapon = dungeonManager.dungeons[i].transform.GetChild(0).GetChild(0).GetChild(0).gameObject; // 자식 오브젝트 접근법
             currentWeapon.GetComponent<SpriteRenderer>().sprite = weaponManager.swordList[idx];
+            currentWeapon.GetComponent<WeaponData>().weaponName = weaponManager.data[idx]["weaponName"].ToString();
+            currentWeapon.GetComponent<WeaponData>().weaponAtk = (int)weaponManager.data[idx]["weaponAtk"];
 
         }
-
+        //디스플레이에 디버그 로그(현 무기정보) 띄우기
+        weaponInformation.text ="weapon Name" + '\n' + currentWeapon.GetComponent<WeaponData>().weaponName + '\n' +
+                                "weaponAtk" + currentWeapon.GetComponent<WeaponData>().weaponAtk + '\n' +
+                                "weapon Price" + currentWeapon.GetComponent<WeaponData>().weaponPrice;
         weaponIdx = idx;
     }
 }

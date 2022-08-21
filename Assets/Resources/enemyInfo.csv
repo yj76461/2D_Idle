@@ -1,0 +1,7 @@
+﻿enemyId,enemyName,enemyHP,enemyMoney,enemyItem
+100,slim lv1,50,10,slim boots
+101,slim lv2,100,50,slim armor
+102,slim lv3,150,70,slim helm
+201,devil slim lv1,200,100,devil boots
+202,devil slim lv2,300,200,devil armor
+203,devil slim lv3,400,300,devil helm

@@ -6,8 +6,8 @@ public class WeaponData : MonoBehaviour
 {
     public WeaponManager weaponManager;
     public string weaponName;
-    public int attackDamage;
-    public int price;
+    public int weaponAtk;
+    public int weaponPrice;
     public bool canUse = false;
     public float atkSpeed = 0f;
 

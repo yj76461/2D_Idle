@@ -1,0 +1,25 @@
+﻿weaponId,weaponName,weaponAtk,weaponPrice
+100,wood sword lv1,50,0
+200,wood sword lv2,60,100
+300,iron sword lv1,100,1000
+400,iron sword lv2,120,2000
+500,iron sword lv3,130,3000
+600,iron sword lv4,140,4000
+700,iron sword lv5,150,5000
+800,iron sword lv6,160,6000
+900,iron sword lv7,170,7000
+1000,iron sword lv8,180,8000
+1100,iron sword lv9,190,9000
+1200,iron sword lv10,200,10000
+1300,iron sword lv11,210,11000
+1400,iron sword lv12,220,12000
+1500,iron sword lv13,230,13000
+1600,iron sword lv14,240,14000
+1700,iron sword lv15,250,15000
+1800,iron sword lv16,260,16000
+1900,iron sword lv17,270,17000
+2000,iron sword lv18,280,18000
+2100,iron sword lv19,290,19000
+2200,iron sword lv20,300,20000
+2300,iron sword lv21,310,21000
+2400,iron sword lv22,320,22000

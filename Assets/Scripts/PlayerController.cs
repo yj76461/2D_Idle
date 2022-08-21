@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("doAttack", true);
             //Debug.Log(scannedObject); 인식하는지 아닌지 디버깅 용
-            dmg = weaponManager.getWeaponAtk("lv1gum");
+            dmg = gameManager.currentWeapon.GetComponent<WeaponData>().weaponAtk;
             //Debug.Log(dmg + " is my damage!");
             enemyExp = scannedObject.GetComponent<EnemyData>().enemyExp;
 
