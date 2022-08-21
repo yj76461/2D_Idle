@@ -30,11 +30,13 @@ public class GameManager : MonoBehaviour
         {
             toLevelUp[i] = toLevelUp[i - 1] * 2.0f;
         }
+
+        
         //storeBtn.onClick.AddListener(OpenCloseStore);
     }
     void Start()
     {
-        
+        InitializeWeapon();
         SpawnEnemy(0);
         SpawnEnemy(1);
     }
@@ -120,13 +122,14 @@ public class GameManager : MonoBehaviour
     public void ChangeWeapon()
     {
         int idx = Random.Range(0,6);
-        for(int i = 0; i < dungeonManager.dungeons.Length ; i++)
+        for(int i = 0; i < dungeonManager.dungeons.Length ; i++) // 각 던전에 모두 적용
         {
             // 각 던전 내 소속된 무기에 접근
             currentWeapon = dungeonManager.dungeons[i].transform.GetChild(0).GetChild(0).GetChild(0).gameObject; // 자식 오브젝트 접근법
+
             currentWeapon.GetComponent<SpriteRenderer>().sprite = weaponManager.swordList[idx];
-            currentWeapon.GetComponent<WeaponData>().weaponName = weaponManager.data[idx]["weaponName"].ToString();
-            currentWeapon.GetComponent<WeaponData>().weaponAtk = (int)weaponManager.data[idx]["weaponAtk"];
+            currentWeapon.GetComponent<WeaponData>().weaponName = weaponManager.weaponInfo[idx]["weaponName"].ToString();
+            currentWeapon.GetComponent<WeaponData>().weaponAtk = (int)weaponManager.weaponInfo[idx]["weaponAtk"];
 
         }
         //디스플레이에 디버그 로그(현 무기정보) 띄우기
@@ -134,5 +137,22 @@ public class GameManager : MonoBehaviour
                                 "weaponAtk" + currentWeapon.GetComponent<WeaponData>().weaponAtk + '\n' +
                                 "weapon Price" + currentWeapon.GetComponent<WeaponData>().weaponPrice;
         weaponIdx = idx;
+    }
+
+    public void InitializeWeapon()
+    {
+        for(int i = 0; i < dungeonManager.dungeons.Length ; i++) // 각 던전에 모두 적용
+        {
+            // 각 던전 내 소속된 무기에 접근
+            currentWeapon = dungeonManager.dungeons[i].transform.GetChild(0).GetChild(0).GetChild(0).gameObject; // 자식 오브젝트 접근법
+
+            currentWeapon.GetComponent<SpriteRenderer>().sprite = weaponManager.swordList[0];
+            currentWeapon.GetComponent<WeaponData>().weaponName = weaponManager.weaponInfo[0]["weaponName"].ToString();
+            currentWeapon.GetComponent<WeaponData>().weaponAtk = (int)weaponManager.weaponInfo[0]["weaponAtk"];
+        }
+
+         weaponInformation.text ="weapon Name" + '\n' + currentWeapon.GetComponent<WeaponData>().weaponName + '\n' +
+                                "weaponAtk" + currentWeapon.GetComponent<WeaponData>().weaponAtk + '\n' +
+                                "weapon Price" + currentWeapon.GetComponent<WeaponData>().weaponPrice;
     }
 }

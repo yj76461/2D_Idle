@@ -9,13 +9,21 @@ public class DungeonManager : MonoBehaviour
     public GameObject basicDungeon;
     public GameManager gameManager;
     public WeaponManager weaponManager;
+    public List<Dictionary<string, object>> enemyInfo = new List<Dictionary<string, object>>();
     
     void Awake()
     {
+        enemyInfo = CSVReader.Read("enemyInfo");
+
         dungeons[0].transform.position = new Vector3(0, 0, 0);
         for(int i = 0; i < dungeons.Length; i++)
         {
-            enemyList[i].GetComponent<EnemyData>().GenerateEnemyData(i, 1 * 100, i * 20, (i + 1)* 40);
+            // 각 층별 적 정보 대입
+            enemyList[i].GetComponent<EnemyData>().GenerateEnemyData(i, 
+                                                                    enemyInfo[i]["enemyName"].ToString(), 
+                                                                    (int)enemyInfo[i]["enemyHP"],
+                                                                    (int)enemyInfo[i]["enemyMoney"],
+                                                                    enemyInfo[i]["enemyItem"].ToString());
             dungeons[i].GetComponent<DungeonData>().GenerateDungeonData(i, 100, enemyList[i], false);
 
             if(i > 0)
