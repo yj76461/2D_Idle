@@ -15,8 +15,9 @@ public class WeaponData : MonoBehaviour
 
     void Awake()
     {
-        weaponSprite = gameObject.GetComponent<SpriteRenderer>();
-        weaponSprite.sprite = weaponManager.swordList[0];
+        //weaponManager = GameObject.Find("WeaponManager").GetComponent<WeaponManager>();
+        // weaponSprite = gameObject.GetComponent<SpriteRenderer>();
+        // weaponSprite.sprite = weaponManager.swordList[0];
     }
     
 }

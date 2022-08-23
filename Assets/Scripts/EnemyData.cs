@@ -17,9 +17,9 @@ public class EnemyData : MonoBehaviour
 
     }
 
-    public void GenerateEnemyData(int floor, string name, int HP, int money, string items)
+    public void GenerateEnemyData(int Id, string name, int HP, int money, string items)
     {
-        enemyFloor = floor;
+        enemyId = Id;
         enemyName = name;
         enemyHP = HP;
         enemyMoney = money;

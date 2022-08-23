@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public WeaponManager weaponManager;
+ 
     public GameManager gameManager;
-    public DungeonManager dungeonManager;
-    public BarController barController;
     
     public int dmg= 0;
     public float atkSpeed = 0.2f;
@@ -27,6 +25,7 @@ public class PlayerController : MonoBehaviour
     bool canAttack = true;
     void Awake()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
@@ -86,7 +85,7 @@ public class PlayerController : MonoBehaviour
         
                 StartCoroutine("SpawnDelay");
                 
-                gameManager.SpawnEnemy(col.GetComponent<EnemyData>().enemyFloor);
+                gameManager.SpawnEnemy(myFloor);
             }
         }
         else

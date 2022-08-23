@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     
     public void SpawnEnemy(int floor){
-        GameObject currentDungeon = dungeonManager.dungeons[floor];
+        GameObject currentDungeon = dungeonManager.dungeonList[floor];
         Vector3 currentDungeonPorsition = currentDungeon.transform.position;
         
         if(floor >= 0){
@@ -122,10 +122,10 @@ public class GameManager : MonoBehaviour
     public void ChangeWeapon()
     {
         int idx = Random.Range(0,6);
-        for(int i = 0; i < dungeonManager.dungeons.Length ; i++) // 각 던전에 모두 적용
+        for(int i = 0; i < dungeonManager.dungeonList.Count ; i++) // 각 던전에 모두 적용
         {
             // 각 던전 내 소속된 무기에 접근
-            currentWeapon = dungeonManager.dungeons[i].transform.GetChild(0).GetChild(0).GetChild(0).gameObject; // 자식 오브젝트 접근법
+            currentWeapon = dungeonManager.dungeonList[i].transform.GetChild(0).GetChild(0).GetChild(0).gameObject; // 자식 오브젝트 접근법
 
             currentWeapon.GetComponent<SpriteRenderer>().sprite = weaponManager.swordList[idx];
             currentWeapon.GetComponent<WeaponData>().weaponName = weaponManager.weaponInfo[idx]["weaponName"].ToString();
@@ -141,10 +141,10 @@ public class GameManager : MonoBehaviour
 
     public void InitializeWeapon()
     {
-        for(int i = 0; i < dungeonManager.dungeons.Length ; i++) // 각 던전에 모두 적용
+        for(int i = 0; i < dungeonManager.dungeonList.Count ; i++) // 각 던전에 모두 적용
         {
             // 각 던전 내 소속된 무기에 접근
-            currentWeapon = dungeonManager.dungeons[i].transform.GetChild(0).GetChild(0).GetChild(0).gameObject; // 자식 오브젝트 접근법
+            currentWeapon = dungeonManager.dungeonList[i].transform.GetChild(0).GetChild(0).GetChild(0).gameObject; // 자식 오브젝트 접근법
 
             currentWeapon.GetComponent<SpriteRenderer>().sprite = weaponManager.swordList[0];
             currentWeapon.GetComponent<WeaponData>().weaponName = weaponManager.weaponInfo[0]["weaponName"].ToString();
