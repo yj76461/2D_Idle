@@ -313,11 +313,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9fc6610d7184cd78e00d08005369d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonId: 6
-  dungeonPrice: 1000000
-  isActivated: 1
-  dungeonEnemy: {fileID: 2098104418758566590, guid: f9121c01090e74cc0af343c60ab8c776, type: 3}
-  transLayer: {fileID: 7032186249330262630}
+  dungeonId: 0
+  dungeonPrice: 0
+  isActivated: 0
+  dungeonEnemy: {fileID: 0}
+  transLayer: {fileID: 0}
 --- !u!1 &7032186248608682844
 GameObject:
   m_ObjectHideFlags: 0
