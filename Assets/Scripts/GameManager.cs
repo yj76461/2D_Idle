@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public BarController barController;
     public DungeonManager dungeonManager;
     public WeaponManager weaponManager;
-    public GameObject currentWeapon;
+    GameObject currentWeapon;
     bool storeIsOpen = false;
     int level = 1;
     float currentExp = 0.0f;
@@ -30,15 +30,15 @@ public class GameManager : MonoBehaviour
         {
             toLevelUp[i] = toLevelUp[i - 1] * 2.0f;
         }
-
         
         //storeBtn.onClick.AddListener(OpenCloseStore);
     }
     void Start()
     {
+        dungeonManager.SpawnDungeon(); // 최초 인덱스 0에 접근하여 첫 던전 문 연다.
         InitializeWeapon();
-        SpawnEnemy(0);
-        SpawnEnemy(1);
+        //SpawnEnemy(0, new Vector3(0f,0f,0f));
+
     }
 
     void Update()
@@ -54,12 +54,12 @@ public class GameManager : MonoBehaviour
     }
 
     
-    public void SpawnEnemy(int floor){
+    public void SpawnEnemy(int floor, Vector3 currentPosition){
         GameObject currentDungeon = dungeonManager.dungeonList[floor];
-        Vector3 currentDungeonPorsition = currentDungeon.transform.position;
+        Vector3 currentDungeonPosition = currentPosition;
         
         if(currentDungeon.GetComponent<DungeonData>().isActivated == true){
-            GameObject enemy = Instantiate(currentDungeon.GetComponent<DungeonData>().dungeonEnemy , new Vector3(currentDungeonPorsition.x + 3.0f, currentDungeonPorsition.y - 2.0f, 0), Quaternion.identity);
+            GameObject enemy = Instantiate(currentDungeon.GetComponent<DungeonData>().dungeonEnemy , new Vector3(currentDungeonPosition.x + 3.0f, currentDungeonPosition.y - 2.0f, 0), Quaternion.identity);
         }
 
         //int randSpawn = Random.Range(0, Enemy.Length);

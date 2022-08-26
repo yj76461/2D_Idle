@@ -1157,6 +1157,7 @@ MonoBehaviour:
   - {fileID: 2098104418758566590, guid: f9121c01090e74cc0af343c60ab8c776, type: 3}
   gameManager: {fileID: 113329687}
   weaponManager: {fileID: 1189057055}
+  currentIdx: 0
 --- !u!4 &236296427
 Transform:
   m_ObjectHideFlags: 0
@@ -3234,6 +3235,7 @@ MonoBehaviour:
   enemyExp: 0
   enemyHP: 0
   myFloor: 4
+  myDungeonPosition: {x: 0, y: 0, z: 0}
 --- !u!95 &697188496
 Animator:
   serializedVersion: 4
@@ -5723,6 +5725,7 @@ MonoBehaviour:
   enemyExp: 0
   enemyHP: 0
   myFloor: 4
+  myDungeonPosition: {x: 0, y: 0, z: 0}
 --- !u!95 &1262705974
 Animator:
   serializedVersion: 4
@@ -5899,6 +5902,7 @@ MonoBehaviour:
   enemyExp: 0
   enemyHP: 0
   myFloor: 4
+  myDungeonPosition: {x: 0, y: 0, z: 0}
 --- !u!95 &1357179733
 Animator:
   serializedVersion: 4
@@ -6809,6 +6813,7 @@ MonoBehaviour:
   enemyExp: 0
   enemyHP: 0
   myFloor: 3
+  myDungeonPosition: {x: 0, y: 0, z: 0}
 --- !u!95 &1715628999
 Animator:
   serializedVersion: 4
@@ -8896,6 +8901,7 @@ MonoBehaviour:
   enemyExp: 0
   enemyHP: 0
   myFloor: 2
+  myDungeonPosition: {x: 0, y: 0, z: 0}
 --- !u!95 &2081110693
 Animator:
   serializedVersion: 4

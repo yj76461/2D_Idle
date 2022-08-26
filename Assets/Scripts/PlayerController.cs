@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public int enemyHP;
 
     public int myFloor;
+    public Vector3 myDungeonPosition;
     
     Vector3 dirVec = Vector3.right;
     float h, v;
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        myFloor = this.gameObject.transform.parent.parent.GetComponent<DungeonData>().dungeonIdx;
+        myDungeonPosition = this.gameObject.transform.parent.parent.position;
     }
 
     void Update()
@@ -36,7 +39,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("doAttack", true);
             //Debug.Log(scannedObject); 인식하는지 아닌지 디버깅 용
-            dmg = gameManager.currentWeapon.GetComponent<WeaponData>().weaponAtk;
+            dmg = this.gameObject.transform.GetChild(0).GetComponent<WeaponData>().weaponAtk;
             //Debug.Log(dmg + " is my damage!");
             enemyExp = scannedObject.GetComponent<EnemyData>().enemyExp;
 
@@ -67,14 +70,13 @@ public class PlayerController : MonoBehaviour
 
         if (col.CompareTag("Enemy"))
         {
-            Debug.Log("enemy encounter!!");
             if(canAttack == true){
                 enemyHP = col.GetComponent<EnemyController>().TakeDamage(dmg);
                 canAttack = false;
                 StartCoroutine("AttackDelay"); // 딜레이줘서 한번에 여러대 때리기 방지
             }
 
-            Debug.Log(enemyHP); // 현 어택 속도일 때, 한번의 공격에서 네번의 충돌 발생 확인.
+            //Debug.Log(enemyHP); // 현 어택 속도일 때, 한번의 공격에서 네번의 충돌 발생 확인.
             if(enemyHP <= 0 && canSpawn == true)
             {
                 canSpawn = false;
@@ -82,10 +84,10 @@ public class PlayerController : MonoBehaviour
                 myExp += enemyExp;
                 gameManager.GetItems(col);
                 gameManager.CheckLevelUp(myExp);
-        
+                Debug.Log("enemy Name is "+ col.GetComponent<EnemyData>().enemyName + " --> is it right??");
                 StartCoroutine("SpawnDelay");
-                
-                gameManager.SpawnEnemy(myFloor);
+                myDungeonPosition = this.gameObject.transform.parent.parent.position;
+                gameManager.SpawnEnemy(myFloor, myDungeonPosition);
             }
         }
         else

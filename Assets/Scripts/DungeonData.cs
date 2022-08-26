@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DungeonData : MonoBehaviour
 {
-    
+    public int dungeonIdx;
     public int dungeonId;
     public int dungeonPrice;
     
@@ -31,8 +31,9 @@ public class DungeonData : MonoBehaviour
 
     
 
-    public void GenerateDungeonData(int id, int price, GameObject enemy, bool activate)
+    public void GenerateDungeonData(int idx, int id, int price, GameObject enemy, bool activate)
     {
+        dungeonIdx = idx;
         dungeonId = id;
         dungeonPrice = price;
         dungeonEnemy = enemy;

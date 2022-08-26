@@ -9,7 +9,6 @@ public class EnemyData : MonoBehaviour
     public string enemyName;
     public int enemyHP;
     public float enemyExp;
-
     public int enemyMoney;
     
     void Awake()
