@@ -13,7 +13,6 @@ public class DungeonData : MonoBehaviour
 
     public GameObject dungeonEnemy;
 
-    public SpriteRenderer transLayer;
 
     void Awake()
     {

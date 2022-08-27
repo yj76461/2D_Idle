@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     bool canSpawn = true;
     bool canAttack = true;
+    bool canDetect = false;
     void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -54,8 +55,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.DrawRay(rigid.position, dirVec * 1.5f, new Color(1, 0, 0));
+        Debug.DrawRay(rigid.position, dirVec * 1.5f, new Color(1, 0, 0), 5.0f);
+        Debug.DrawRay(rigid.position + new Vector2 (0f, 0.2f), dirVec * 10.0f, Color.yellow);
         RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, dirVec, 1.5f, LayerMask.GetMask("Enemy"));
+        RaycastHit2D detectEnemy = Physics2D.Raycast(rigid.position, dirVec, 10.0f, LayerMask.GetMask("Enemy"));
 
         if(rayHit.collider != null )
         {
@@ -63,6 +66,19 @@ public class PlayerController : MonoBehaviour
         }
         else
             scannedObject = null;
+        
+        if(detectEnemy.collider != null)
+        {
+            Debug.Log("can detect!!!");
+            canDetect = true;
+        }
+        else
+        {
+            Debug.Log("can't detect!!!");
+            canDetect = false;
+            gameManager.SpawnEnemy(myFloor, myDungeonPosition);
+        }
+            
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -75,8 +91,9 @@ public class PlayerController : MonoBehaviour
                 canAttack = false;
                 StartCoroutine("AttackDelay"); // 딜레이줘서 한번에 여러대 때리기 방지
             }
+            myFloor = this.gameObject.transform.parent.parent.GetComponent<DungeonData>().dungeonIdx;
+            myDungeonPosition = this.gameObject.transform.parent.parent.position;
 
-            //Debug.Log(enemyHP); // 현 어택 속도일 때, 한번의 공격에서 네번의 충돌 발생 확인.
             if(enemyHP <= 0 && canSpawn == true)
             {
                 canSpawn = false;
@@ -84,10 +101,12 @@ public class PlayerController : MonoBehaviour
                 myExp += enemyExp;
                 gameManager.GetItems(col);
                 gameManager.CheckLevelUp(myExp);
-                Debug.Log("enemy Name is "+ col.GetComponent<EnemyData>().enemyName + " --> is it right??");
-                StartCoroutine("SpawnDelay");
-                myDungeonPosition = this.gameObject.transform.parent.parent.position;
-                gameManager.SpawnEnemy(myFloor, myDungeonPosition);
+               
+                
+                //값 재할당 파트
+                
+                if(canDetect == false)
+                    gameManager.SpawnEnemy(myFloor, myDungeonPosition);
             }
         }
         else
@@ -102,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SpawnDelay() // 한번에 여러번 돈이 오르고 스폰이 되는 것을 방지
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         canSpawn = true;
     }
 

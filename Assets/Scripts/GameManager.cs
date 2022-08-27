@@ -61,9 +61,6 @@ public class GameManager : MonoBehaviour
         if(currentDungeon.GetComponent<DungeonData>().isActivated == true){
             GameObject enemy = Instantiate(currentDungeon.GetComponent<DungeonData>().dungeonEnemy , new Vector3(currentDungeonPosition.x + 3.0f, currentDungeonPosition.y - 2.0f, 0), Quaternion.identity);
         }
-
-        //int randSpawn = Random.Range(0, Enemy.Length);
-        //GameObject enemy = Instantiate(Enemy[randSpawn], new Vector3(3.3f, -1.07f, 0), Quaternion.identity);
     }
 
     public void RespawnEnemy(GameObject enemy)

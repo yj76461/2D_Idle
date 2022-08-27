@@ -59,78 +59,21 @@ public class DungeonManager : MonoBehaviour
         currentWeapon.GetComponent<SpriteRenderer>().sprite = weaponManager.swordList[gameManager.weaponIdx];
     }
 
-    // public void SetDungeonData(int Idx) // 여기서 던전에 필요한 모든 정보를 기입해야함.
-    // {
-    //         dungeonList.Add(dungeonPrefab); // 정보를 입력할 던전을 리스트에 넣기
-    //         // GameObject Enemy = FindProperEnemy((int)dungeonInfo[Idx]["dungeonEnemyId"]);
-
-    //         // dungeonList[Idx].GetComponent<DungeonData>().GenerateDungeonData( // 던전 정보 입력
-    //         //     (int)dungeonInfo[Idx]["dungeonId"],
-    //         //     (int)dungeonInfo[Idx]["dungeonPrice"],
-    //         //     Enemy,
-    //         //     false
-    //         // );
-    //         Debug.Log("dungeon ID : " +(int)dungeonInfo[Idx]["dungeonId"] + "dungeon price : " + (int)dungeonInfo[Idx]["dungeonPrice"] + "dungeonEnemyId : "+ (int)dungeonInfo[Idx]["dungeonEnemyId"]);
-
-            
-            
-
-            
-    //         // 좌표 정보 + 수정 : instatiate 하지 않은 채로 포지션값을 변경하는 것은 불가능해 보인다. 따라서 아래 생성 함수에서 좌표값을 준다.
-    //         // if(Idx > 0)
-    //         //     dungeonList[Idx].transform.position = new Vector3(0f, previousDungeonY + 3.0f, 0f);
-    //         // else  // Idx 가 0일 때
-    //         //     dungeonList[Idx].transform.position = new Vector3(0f, 0f, 0f);
-
-    //         // previousDungeonY = dungeonList[Idx].transform.position.y;     
-    // }
-
-    // public void ActivateEmptyDungeon() // SetDungeonData에서 완성된 정보를 바탕으로 소환만 때린다. 전역변수 currentIdx에 기반하여 작동.
-    // {
-        
-    //     //dungeonList[currentIdx].GetComponent<DungeonData>().transLayer.sharedMaterial.color = new Color(0f, 0f, 0f, 0.0f);
-
-    //     Instantiate(dungeonList[currentIdx], dungeonPosition, Quaternion.identity);
-
-    //     GameObject Enemy = FindProperEnemy((int)dungeonInfo[currentIdx]["dungeonEnemyId"]);
-            
-    //     dungeonList[currentIdx].GetComponent<DungeonData>().GenerateDungeonData( // 던전 정보 입력
-    //         (int)dungeonInfo[currentIdx]["dungeonId"],
-    //         (int)dungeonInfo[currentIdx]["dungeonPrice"],
-    //         Enemy,
-    //         true
-    //     );
-    //     // 던전 내 플레이어의 층을 알려준다. -> 해당 층의 위치에 몬스터가 올바르게 소환될 수 있도록 한다.
-    //     dungeonList[currentIdx].transform.GetChild(0).GetChild(0).GetComponent<PlayerController>().myFloor = currentIdx;
-    //     //dungeonList[currentIdx].GetComponent<DungeonData>().isActivated = true;
-
-    //     gameManager.SpawnEnemy(currentIdx, dungeonPosition);
-
-    //     // 플레이어 컨트롤러에 자신의 던전의 위치 전달
-    //     //dungeonList[currentIdx].transform.GetChild(0).GetChild(0).GetComponent<PlayerController>().myDungeonPosition = dungeonPosition;
-
-    //     if(dungeonList.Count - 1 > currentIdx) // 리스트 길이보다 긴 것은 다음 문장을 실행하지 않음.
-    //         nextActivation(currentIdx); // 다음 층 set active하게
-        
-    //     dungeonPosition = dungeonPosition + new Vector3(0f, 3.0f, 0f);
-    //     currentIdx++; 
-        
-    //     Debug.Log("currentIdx: " + currentIdx + "dungeon position : " + dungeonList[currentIdx].transform.position);
-    // }
+   
     public void SpawnDungeon()
     {
         GameObject newDungeon = Instantiate(dungeonPrefab, new Vector3(-10.0f, 0f, 0f), Quaternion.identity); // 외진 곳에 새로운 던전이 될 던전을 인스턴스화
         newDungeon.name = "dungeon idx : " + currentIdx;
         dungeonList.Add(newDungeon);
         DungeonData newDungeonData = dungeonList[currentIdx].GetComponent<DungeonData>(); // 생성한 던전을 리스트에 넣고 데이터 뽑아옴.
-        GameObject properEnemy = FindProperEnemy((int)dungeonInfo[currentIdx]["dungeonId"]);
+        
 
 
         newDungeonData.GenerateDungeonData(
             currentIdx,    
             (int)dungeonInfo[currentIdx]["dungeonId"],
             (int)dungeonInfo[currentIdx]["dungeonPrice"],
-            properEnemy,
+            FindProperEnemy((int)dungeonInfo[currentIdx]["dungeonEnemyId"]),
             true
         );
         newDungeon.transform.position = dungeonPosition;
@@ -146,11 +89,11 @@ public class DungeonManager : MonoBehaviour
         for(int i = 0; i < enemyArray.Length; i ++)
         {
             if(id == enemyArray[i].GetComponent<EnemyData>().enemyId){
-                Debug.Log("Got it!! input id is " + id + "and enemyId is " + enemyArray[i].GetComponent<EnemyData>().enemyId + "and array index is " + i);
+                //Debug.Log("Got it!! input id is " + id + "and enemyId is " + enemyArray[i].GetComponent<EnemyData>().enemyId + "and array index is " + i);
                 return enemyArray[i];
             }
         }
-        Debug.Log("Error: no One is matched with Input!!");
+        Debug.Log("Error: no One is matched with Input!! id is : " + id);
         return enemyArray[0];
     }
 }
